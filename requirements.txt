@@ -4,7 +4,7 @@ langchain-community
 langchain-openai
 openai
 tiktoken
-chromadb
+faiss-cpu
 python-dotenv
-protobuf==4.23.4
+
 

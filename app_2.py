@@ -1,15 +1,12 @@
-
 import os
 import streamlit as st
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_core.prompts import PromptTemplate 
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
-
-# Load local .env only if testing locally (OPTIONAL)
 
 # Read OpenAI API key securely (Streamlit Cloud Secrets)
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -18,7 +15,7 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Hello! I'm DR_ALI_AI Assistant. How can I help you today?"}]
 
-# Load and process document + build vector store
+# Load and process document + build vector store (FAISS)
 @st.cache_resource
 def load_vector_store():
     loader = TextLoader("temp_2.txt", encoding="utf-8")
@@ -27,16 +24,10 @@ def load_vector_store():
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=100)
     chunks = text_splitter.split_documents(docs)
 
-    vector_store = Chroma(
-        embedding_function=OpenAIEmbeddings(openai_api_key=openai_api_key),
-        persist_directory='my_chroma_db',
-        collection_name='sample'
+    vector_store = FAISS.from_documents(
+        documents=chunks,
+        embedding=OpenAIEmbeddings(openai_api_key=openai_api_key)
     )
-
-    # Rebuild DB if it doesn't exist
-    if not os.path.exists("my_chroma_db/index"):
-        vector_store.add_documents(chunks)
-        vector_store.persist()
 
     return vector_store
 
@@ -116,3 +107,4 @@ if user_input := st.chat_input("Message DR_ALI_AI..."):
         st.markdown(response)
 
     st.session_state.messages.append({"role": "assistant", "content": response})
+

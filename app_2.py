@@ -88,7 +88,6 @@ main_chain = parallel_chain | prompt | model | parser
 
 # Streamlit UI
 st.title("DR_ALI_AI Assistant")
-st.caption("Powered by LangChain & OpenAI")
 
 # Display previous messages
 for message in st.session_state.messages:

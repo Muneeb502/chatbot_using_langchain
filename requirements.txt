@@ -6,3 +6,5 @@ openai
 tiktoken
 chromadb
 python-dotenv
+protobuf==4.23.4
+

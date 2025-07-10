@@ -8,12 +8,15 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 
+
 # Read OpenAI API key securely (Streamlit Cloud Secrets)
 openai_api_key = os.getenv("OPENAI_API_KEY")
+
 
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Hello! I'm DR_ALI_AI Assistant. How can I help you today?"}]
+
 
 # Load and process document + build vector store (FAISS)
 @st.cache_resource
@@ -30,6 +33,8 @@ def load_vector_store():
     )
 
     return vector_store
+
+
 
 vector_store = load_vector_store()
 retriever = vector_store.as_retriever(search_kwargs={"k": 4})

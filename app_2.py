@@ -18,7 +18,7 @@ if "messages" not in st.session_state:
 # Load and process document + build vector store (FAISS)
 @st.cache_resource
 def load_vector_store():
-    loader = TextLoader("temp_2.txt", encoding="utf-8")
+    loader = TextLoader("dr_ali_text.txt", encoding="utf-8")
     docs = loader.load()
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=100)

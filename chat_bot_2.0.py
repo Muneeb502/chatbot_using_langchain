@@ -13,8 +13,8 @@ import uuid
 # Set OpenAI API key
 load_dotenv()
 # Initialize Streamlit app
-st.title("Dr. Ali's RAG Chatbot")
-st.write("Ask questions about Dr. Ali's services or medical information. The chatbot remembers our conversation for better responses!")
+st.title("Dr. Ali AI Assistant")
+st.write("Hello! I'm Dr. Ali's AI Assistant. Ask me about Dr. Mohammad Azhar Ali, his services, or anything related to Amae Plastic Surgery Center and AMAE Med Spa!")
 
 # Initialize session state for chat history and conversation ID
 if "messages" not in st.session_state:

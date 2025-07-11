@@ -9,9 +9,10 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain_core.messages import HumanMessage, AIMessage
 import uuid
-
+openai_api_key = os.getenv("OPENAI_API_KEY")
 # Set OpenAI API key
 load_dotenv()
+
 # Initialize Streamlit app
 st.title("Dr. Ali AI Assistant")
 st.write("Hello! I'm Dr. Ali's AI Assistant. Ask me about Dr. Mohammad Azhar Ali, his services, or anything related to Amae Plastic Surgery Center and AMAE Med Spa!")

@@ -15,7 +15,7 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": "Hello! I'm DR_ALI_AI Assistant. How can I help you today?"}]
+    st.session_state["messages"] = [{"role": "assistant", "content": "Hello! I'm Dr Ali AI Assistant. How can I help you today?"}]
 
 
 # Load and process document + build vector store (FAISS)
